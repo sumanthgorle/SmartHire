@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Company Dashboard - SmartHire</title>
+</head>
+
+<body>
+
+    <h1>Company Dashboard</h1>
+
+    <h2>My Jobs</h2>
+
+    {% for job in jobs %}
+
+    <h3>{{ job.title }}</h3>
+
+    <p>
+        Location: {{ job.location }}
+    </p>
+
+    <p>
+        Salary: {{ job.salary }}
+    </p>
+
+    <p>
+        Required Skills: {{ job.required_skills }}
+    </p>
+
+    <p>
+        Applicants: {{ job.applicant_count }}
+    </p>
+
+
+    {% if job.applicants %}
+
+    <h4>Applicants</h4>
+
+    {% for application in job.applicants %}
+
+    <p>
+        Applicant: {{ application.candidate.username }}
+    </p>
+
+    <p>
+        Current Status: {{ application.status }}
+    </p>
+
+
+    <form method="post" action="{% url 'update_status' application.id %}">
+
+        {% csrf_token %}
+
+        <label>
+                        Change Status:
+                    </label>
+
+        <select name="status">
+
+                        <option
+                            value="applied"
+                            {% if application.status == 'applied' %}selected{% endif %}
+                        >
+                            Applied
+                        </option>
+
+                        <option
+                            value="shortlisted"
+                            {% if application.status == 'shortlisted' %}selected{% endif %}
+                        >
+                            Shortlisted
+                        </option>
+
+                        <option
+                            value="rejected"
+                            {% if application.status == 'rejected' %}selected{% endif %}
+                        >
+                            Rejected
+                        </option>
+
+                        <option
+                            value="interview"
+                            {% if application.status == 'interview' %}selected{% endif %}
+                        >
+                            Interview
+                        </option>
+
+                        <option
+                            value="selected"
+                            {% if application.status == 'selected' %}selected{% endif %}
+                        >
+                            Selected
+                        </option>
+
+                    </select>
+
+        <input type="submit" value="Update Status">
+
+    </form>
+
+    <hr> {% endfor %} {% else %}
+
+    <p>
+        No applicants yet.
+    </p>
+
+    {% endif %}
+
+
+    <a href="{% url 'job_detail' job.id %}">
+        <button>View Job</button>
+    </a>
+
+    <a href="{% url 'company_applicants' job.id %}">
+        <button>View Applicants</button>
+    </a>
+
+    <hr> {% empty %}
+
+    <p>
+        You have not created any jobs yet.
+    </p>
+
+    {% endfor %}
+
+
+    <br>
+
+    <a href="/jobs/create/">
+        <button>Create New Job</button>
+    </a>
+
+    <br><br>
+
+    <a href="/logout/">
+        <button>Logout</button>
+    </a>
+
+</body>
+
+</html>

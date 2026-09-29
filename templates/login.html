@@ -1,0 +1,76 @@
+{% extends 'base.html' %} {% block title %} Login - SmartHire {% endblock %} {% block content %}
+
+<section class="container">
+
+    <div class="form-card">
+
+        <h1>
+            Login
+        </h1>
+
+        <p>
+            Login to your SmartHire account.
+        </p>
+
+        <br> {% if error %}
+
+        <div class="card">
+
+            <p class="missing">
+                {{ error }}
+            </p>
+
+        </div>
+
+        {% endif %}
+
+
+        <form method="post">
+
+            {% csrf_token %}
+
+
+            <div class="form-group">
+
+                <label>
+                    Username
+                </label>
+
+                <input type="text" name="username" placeholder="Enter your username" required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Password
+                </label>
+
+                <input type="password" name="password" placeholder="Enter your password" required>
+
+            </div>
+
+
+            <input type="submit" value="Login" class="btn">
+
+        </form>
+
+
+        <br>
+
+
+        <p>
+            Don't have an account?
+        </p>
+
+
+        <a href="{% url 'register' %}" class="btn btn-success">
+            Create Account
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

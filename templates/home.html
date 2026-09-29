@@ -1,0 +1,123 @@
+{% extends 'base.html' %} {% block title %} SmartHire - AI Recruitment Platform {% endblock %} {% block content %}
+
+<section class="hero">
+
+    <h1>
+        SmartHire
+    </h1>
+
+    <h2>
+        AI-Powered Recruitment Platform
+    </h2>
+
+    <p>
+        Find the right job. Find the right candidate.
+    </p>
+
+
+    {% if user.is_authenticated %}
+
+    <p>
+        Welcome, <strong>{{ user.username }}</strong>
+    </p>
+
+
+    {% if profile.role == 'candidate' %}
+
+    <br>
+
+    <a href="{% url 'candidate_dashboard' %}" class="btn">
+                Candidate Dashboard
+            </a>
+
+    <a href="{% url 'job_list' %}" class="btn btn-secondary">
+                Find Jobs
+            </a> {% elif profile.role == 'company' %}
+
+    <br>
+
+    <a href="{% url 'company_dashboard' %}" class="btn">
+                Company Dashboard
+            </a>
+
+    <a href="{% url 'create_job' %}" class="btn btn-success">
+                Create Job
+            </a> {% endif %} {% else %}
+
+    <br>
+
+    <a href="{% url 'job_list' %}" class="btn">
+            Find Jobs
+        </a>
+
+    <a href="{% url 'login' %}" class="btn btn-secondary">
+            Login
+        </a>
+
+    <a href="{% url 'register' %}" class="btn btn-success">
+            Register
+        </a> {% endif %}
+
+</section>
+
+
+<section class="container">
+
+    <div class="card">
+
+        <h2>
+            About SmartHire
+        </h2>
+
+        <p>
+            SmartHire is a recruitment platform that connects candidates with companies and uses resume analysis to calculate job matching scores.
+        </p>
+
+    </div>
+
+
+    <div class="dashboard-grid">
+
+        <div class="dashboard-card">
+
+            <h3>
+                For Candidates
+            </h3>
+
+            <p>
+                Upload your resume, discover jobs and track your applications.
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>
+                For Companies
+            </h3>
+
+            <p>
+                Create jobs, view applicants and evaluate candidate matches.
+            </p>
+
+        </div>
+
+
+        <div class="dashboard-card">
+
+            <h3>
+                AI Matching
+            </h3>
+
+            <p>
+                Compare candidate resumes with job requirements using skill matching and NLP analysis.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

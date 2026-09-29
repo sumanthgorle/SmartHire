@@ -1,0 +1,113 @@
+{% extends 'base.html' %} {% block title %} Register - SmartHire {% endblock %} {% block content %}
+
+<section class="container">
+
+    <div class="form-card">
+
+        <h1>
+            Create Account
+        </h1>
+
+        <p>
+            Register as a candidate or company on SmartHire.
+        </p>
+
+        <br>
+
+
+        <form method="post">
+
+            {% csrf_token %}
+
+
+            <div class="form-group">
+
+                <label>
+                    Username
+                </label>
+
+                <input type="text" name="username" placeholder="Enter your username" required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Password
+                </label>
+
+                <input type="password" name="password" placeholder="Create a password" required>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Phone
+                </label>
+
+                <input type="text" name="phone" placeholder="Enter your phone number">
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Bio
+                </label>
+
+                <textarea name="bio" placeholder="Tell us about yourself"></textarea>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Register As
+                </label>
+
+                <select name="role" required>
+
+                    <option value="">
+                        Select Role
+                    </option>
+
+                    <option value="candidate">
+                        Candidate
+                    </option>
+
+                    <option value="company">
+                        Company
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <input type="submit" value="Create Account" class="btn btn-success">
+
+        </form>
+
+
+        <br>
+
+
+        <p>
+            Already have an account?
+        </p>
+
+
+        <a href="{% url 'login' %}" class="btn btn-secondary">
+            Login
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

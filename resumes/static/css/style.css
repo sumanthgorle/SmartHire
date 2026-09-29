@@ -1,0 +1,276 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f7fb;
+    color: #222;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input[type="submit"] {
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.navbar {
+    background-color: #172554;
+    color: white;
+    padding: 16px 0;
+}
+
+.navbar-content {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.nav-links a {
+    color: white;
+}
+
+.nav-links a:hover {
+    opacity: 0.8;
+}
+
+.hero {
+    padding: 70px 20px;
+    text-align: center;
+    background: white;
+}
+
+.hero h1 {
+    font-size: 42px;
+    color: #172554;
+    margin-bottom: 10px;
+}
+
+.hero h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.hero p {
+    color: #666;
+    margin-bottom: 25px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 6px;
+    background-color: #2563eb;
+    color: white;
+    margin: 5px;
+}
+
+.btn:hover {
+    background-color: #1d4ed8;
+}
+
+.btn-secondary {
+    background-color: #475569;
+}
+
+.btn-secondary:hover {
+    background-color: #334155;
+}
+
+.btn-success {
+    background-color: #15803d;
+}
+
+.btn-danger {
+    background-color: #dc2626;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 25px;
+    margin: 20px 0;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card h2,
+.card h3 {
+    color: #172554;
+    margin-bottom: 10px;
+}
+
+.job-card {
+    background: white;
+    padding: 25px;
+    margin: 20px 0;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.job-card h2 {
+    color: #172554;
+    margin-bottom: 8px;
+}
+
+.job-info {
+    color: #555;
+    margin: 5px 0;
+}
+
+.skills {
+    margin: 12px 0;
+}
+
+.skill {
+    display: inline-block;
+    background-color: #e0e7ff;
+    color: #3730a3;
+    padding: 5px 10px;
+    border-radius: 15px;
+    margin: 3px;
+    font-size: 13px;
+}
+
+.form-card {
+    max-width: 600px;
+    margin: 40px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 15px;
+}
+
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.dashboard {
+    padding: 35px 0;
+}
+
+.dashboard h1 {
+    color: #172554;
+    margin-bottom: 25px;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.dashboard-card {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.match-box {
+    background-color: #f8fafc;
+    border-left: 5px solid #2563eb;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 6px;
+}
+
+.match-score {
+    font-size: 28px;
+    font-weight: bold;
+    color: #15803d;
+}
+
+.matched {
+    color: #15803d;
+}
+
+.missing {
+    color: #dc2626;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 15px;
+    background-color: #e0e7ff;
+    color: #3730a3;
+    font-size: 13px;
+}
+
+.footer {
+    margin-top: 50px;
+    padding: 25px;
+    text-align: center;
+    background-color: #172554;
+    color: white;
+}
+
+@media (max-width: 700px) {
+    .navbar-content {
+        flex-direction: column;
+        gap: 12px;
+    }
+    .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    .hero h1 {
+        font-size: 32px;
+    }
+    .hero h2 {
+        font-size: 20px;
+    }
+    .container {
+        width: 94%;
+    }
+}

@@ -1,0 +1,94 @@
+{% extends 'base.html' %} {% block title %} Upload Resume - SmartHire {% endblock %} {% block content %}
+
+<section class="container">
+
+    <div class="form-card">
+
+        <h1>
+            Upload Resume
+        </h1>
+
+        <p>
+            Upload your PDF resume so SmartHire can extract your skills and calculate job matches.
+        </p>
+
+        <br> {% if uploaded %}
+
+        <div class="card">
+
+            <h2>
+                Resume Uploaded Successfully!
+            </h2>
+
+            <p>
+                SmartHire has analyzed your resume.
+            </p>
+
+        </div>
+
+
+        <h3>
+            Extracted Skills
+        </h3>
+
+        <br> {% for skill in skills %}
+
+        <p class="matched">
+            ✓ {{ skill }}
+        </p>
+
+        {% empty %}
+
+        <p>
+            No supported skills were found in the resume.
+        </p>
+
+        {% endfor %}
+
+
+        <br>
+
+
+        <a href="{% url 'candidate_dashboard' %}" class="btn">
+                Back to Dashboard
+            </a>
+
+
+        <a href="{% url 'job_list' %}" class="btn btn-secondary">
+                Find Jobs
+            </a> {% else %}
+
+
+        <form method="post" enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+
+            <div class="form-group">
+
+                <label>
+                        Select Resume
+                    </label>
+
+                <input type="file" name="resume" accept=".pdf" required>
+
+            </div>
+
+
+            <input type="submit" value="Upload Resume" class="btn btn-success">
+
+        </form>
+
+
+        <br>
+
+
+        <a href="{% url 'candidate_dashboard' %}" class="btn btn-secondary">
+                Back to Dashboard
+            </a> {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,87 @@
+{% extends 'base.html' %} {% block title %} My Applications - SmartHire {% endblock %} {% block content %}
+
+<section class="container">
+
+    <div class="dashboard">
+
+        <h1>
+            My Applications
+        </h1>
+
+        <p>
+            Track the jobs you have applied for and check your application status.
+        </p>
+
+
+        {% for application in applications %}
+
+        <div class="job-card">
+
+            <h2>
+                {{ application.job.title }}
+            </h2>
+
+
+            <p class="job-info">
+                <strong>Company:</strong> {{ application.job.company.username }}
+            </p>
+
+
+            <p class="job-info">
+                <strong>Location:</strong> {{ application.job.location }}
+            </p>
+
+
+            <p class="job-info">
+                <strong>Applied On:</strong> {{ application.applied_at }}
+            </p>
+
+
+            <p class="job-info">
+
+                <strong>Status:</strong>
+
+                <span class="status">
+                    {{ application.status|title }}
+                </span>
+
+            </p>
+
+
+            <br>
+
+
+            <a href="{% url 'job_detail' application.job.id %}" class="btn">
+                View Job
+            </a>
+
+        </div>
+
+
+        {% empty %}
+
+        <div class="card">
+
+            <h2>
+                No Applications Yet
+            </h2>
+
+            <p>
+                You have not applied for any jobs yet.
+            </p>
+
+            <br>
+
+            <a href="{% url 'job_list' %}" class="btn">
+                Find Jobs
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endblock %}

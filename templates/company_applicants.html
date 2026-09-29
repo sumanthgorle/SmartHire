@@ -1,0 +1,288 @@
+{% extends 'base.html' %} {% block title %} Applicants - SmartHire {% endblock %} {% block content %}
+
+<section class="container">
+
+    <div class="dashboard">
+
+        <h1>
+            Job Applicants
+        </h1>
+
+        <p>
+            Review candidates and their resume matching results.
+        </p>
+
+
+        {% for application in applications %}
+
+        <div class="card">
+
+            <h2>
+                {{ application.candidate.username }}
+            </h2>
+
+
+            <p class="job-info">
+                <strong>Job:</strong> {{ application.job.title }}
+            </p>
+
+
+            <p class="job-info">
+                <strong>Applied On:</strong> {{ application.applied_at }}
+            </p>
+
+
+            <p class="job-info">
+                <strong>Phone:</strong> {{ application.candidate.profile.phone }}
+            </p>
+
+
+            <p class="job-info">
+                <strong>Bio:</strong> {{ application.candidate.profile.bio }}
+            </p>
+
+
+            <p class="job-info">
+
+                <strong>Status:</strong>
+
+                <span class="status">
+                    {{ application.status|title }}
+                </span>
+
+            </p>
+
+
+            {% if application.final_match_percentage is not None %}
+
+            <div class="match-box">
+
+                <h2>
+                    Resume Match
+                </h2>
+
+
+                <p>
+                    <strong>
+                        Final Match Score
+                    </strong>
+                </p>
+
+                <p class="match-score">
+                    {{ application.final_match_percentage|floatformat:2 }}%
+                </p>
+
+
+                <div class="dashboard-grid">
+
+                    <div class="dashboard-card">
+
+                        <h3>
+                            Skill Match
+                        </h3>
+
+                        <p class="match-score">
+                            {{ application.match_percentage|floatformat:2 }}%
+                        </p>
+
+                    </div>
+
+
+                    <div class="dashboard-card">
+
+                        <h3>
+                            AI/NLP Match
+                        </h3>
+
+                        <p class="match-score">
+                            {{ application.ai_match_percentage|floatformat:2 }}%
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <br>
+
+
+                <h3>
+                    Matched Skills
+                </h3>
+
+
+                {% for skill in application.matched_skills %}
+
+                <p class="matched">
+                    ✓ {{ skill }}
+                </p>
+
+                {% empty %}
+
+                <p>
+                    No matching skills found.
+                </p>
+
+                {% endfor %}
+
+
+                <br>
+
+
+                <h3>
+                    Missing Skills
+                </h3>
+
+
+                {% for skill in application.missing_skills %}
+
+                <p class="missing">
+                    ✗ {{ skill }}
+                </p>
+
+                {% empty %}
+
+                <p class="matched">
+                    ✓ No missing skills
+                </p>
+
+                {% endfor %}
+
+
+                <br>
+
+
+                <h3>
+                    Recommendation
+                </h3>
+
+                <p>
+                    {{ application.recommendation }}
+                </p>
+
+            </div>
+
+            {% else %}
+
+            <div class="match-box">
+
+                <h3>
+                    Resume Match
+                </h3>
+
+                <p>
+                    Resume not available for this candidate.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+
+            <br>
+
+
+            <h3>
+                Change Application Status
+            </h3>
+
+
+            <form method="post" action="{% url 'update_status' application.id %}">
+
+                {% csrf_token %}
+
+
+                <div class="form-group">
+
+                    <select name="status">
+
+                        <option
+                            value="applied"
+                            {% if application.status == 'applied' %}
+                                selected
+                            {% endif %}
+                        >
+                            Applied
+                        </option>
+
+
+                        <option
+                            value="shortlisted"
+                            {% if application.status == 'shortlisted' %}
+                                selected
+                            {% endif %}
+                        >
+                            Shortlisted
+                        </option>
+
+
+                        <option
+                            value="interview"
+                            {% if application.status == 'interview' %}
+                                selected
+                            {% endif %}
+                        >
+                            Interview
+                        </option>
+
+
+                        <option
+                            value="selected"
+                            {% if application.status == 'selected' %}
+                                selected
+                            {% endif %}
+                        >
+                            Selected
+                        </option>
+
+
+                        <option
+                            value="rejected"
+                            {% if application.status == 'rejected' %}
+                                selected
+                            {% endif %}
+                        >
+                            Rejected
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <input type="submit" value="Update Status" class="btn btn-success">
+
+            </form>
+
+        </div>
+
+
+        {% empty %}
+
+        <div class="card">
+
+            <h2>
+                No Applicants
+            </h2>
+
+            <p>
+                No candidates have applied for this job yet.
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+
+        <br>
+
+
+        <a href="{% url 'company_dashboard' %}" class="btn btn-secondary">
+            Back to Company Dashboard
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

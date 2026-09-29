@@ -1,0 +1,108 @@
+{% extends 'base.html' %} {% block title %} Candidate Dashboard - SmartHire {% endblock %} {% block content %}
+
+<section class="container">
+
+    <div class="dashboard">
+
+        <h1>
+            Candidate Dashboard
+        </h1>
+
+        <p>
+            Welcome, <strong>{{ user.username }}</strong>
+        </p>
+
+
+        <div class="dashboard-grid">
+
+            <!-- FIND JOBS -->
+
+            <div class="dashboard-card">
+
+                <h2>
+                    Find Jobs
+                </h2>
+
+                <p>
+                    Browse available jobs and find opportunities that match your skills.
+                </p>
+
+                <br>
+
+                <a href="{% url 'job_list' %}" class="btn">
+                    Find Jobs
+                </a>
+
+            </div>
+
+
+            <!-- APPLICATIONS -->
+
+            <div class="dashboard-card">
+
+                <h2>
+                    My Applications
+                </h2>
+
+                <p>
+                    Track the jobs you have applied for and check your application status.
+                </p>
+
+                <br>
+
+                <a href="{% url 'my_applications' %}" class="btn">
+                    View Applications
+                </a>
+
+            </div>
+
+
+            <!-- RESUME -->
+
+            <div class="dashboard-card">
+
+                <h2>
+                    Resume
+                </h2>
+
+                <p>
+                    Upload your resume so SmartHire can analyze your skills and calculate job match scores.
+                </p>
+
+                <br>
+
+                <a href="{% url 'upload_resume' %}" class="btn btn-success">
+                    Upload Resume
+                </a>
+
+            </div>
+
+
+            <!-- LOGOUT -->
+
+            <div class="dashboard-card">
+
+                <h2>
+                    Account
+                </h2>
+
+                <p>
+                    You are logged in as
+                    <strong>{{ user.username }}</strong>.
+                </p>
+
+                <br>
+
+                <a href="{% url 'logout' %}" class="btn btn-secondary">
+                    Logout
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>
+        {% block title %} SmartHire {% endblock %}
+    </title>
+
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+
+        <div class="navbar-content">
+
+            <a href="{% url 'home' %}">
+
+                <div class="logo">
+                    SmartHire
+                </div>
+
+            </a>
+
+
+            <div class="nav-links">
+
+                <a href="{% url 'home' %}">
+                    Home
+                </a>
+
+                <a href="{% url 'job_list' %}">
+                    Jobs
+                </a> {% if user.is_authenticated %} {% if profile.role == 'candidate' %}
+
+                <a href="{% url 'candidate_dashboard' %}">
+                            Dashboard
+                        </a> {% elif profile.role == 'company' %}
+
+                <a href="{% url 'company_dashboard' %}">
+                            Dashboard
+                        </a> {% endif %}
+
+
+                <a href="{% url 'logout' %}">
+                        Logout
+                    </a> {% else %}
+
+                <a href="{% url 'login' %}">
+                        Login
+                    </a>
+
+                <a href="{% url 'register' %}">
+                        Register
+                    </a> {% endif %}
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <main>
+
+        {% block content %} {% endblock %}
+
+    </main>
+
+
+    <footer class="footer">
+
+        <p>
+            SmartHire - AI-Powered Recruitment Platform
+        </p>
+
+        <p>
+            Find the right job. Find the right candidate.
+        </p>
+
+    </footer>
+
+</body>
+
+</html>

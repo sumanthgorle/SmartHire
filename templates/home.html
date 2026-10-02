@@ -1,62 +1,49 @@
-{% extends 'base.html' %} {% block title %} SmartHire - AI Recruitment Platform {% endblock %} {% block content %}
+{% extends 'base.html' %} {% block title %} SmartHire {% endblock %} {% block content %}
 
 <section class="hero">
 
-    <h1>
-        SmartHire
-    </h1>
+    <div class="container">
 
-    <h2>
-        AI-Powered Recruitment Platform
-    </h2>
+        <h1>
+            SmartHire
+        </h1>
 
-    <p>
-        Find the right job. Find the right candidate.
-    </p>
+        <h2>
+            AI-Powered Recruitment Platform
+        </h2>
 
-
-    {% if user.is_authenticated %}
-
-    <p>
-        Welcome, <strong>{{ user.username }}</strong>
-    </p>
+        <p>
+            Find the right job. Find the right candidate.
+        </p>
 
 
-    {% if profile.role == 'candidate' %}
+        {% if user.is_authenticated %} {% if profile.role == 'candidate' %}
 
-    <br>
+        <a href="{% url 'job_list' %}" class="btn">
+                    Find Jobs
+                </a>
 
-    <a href="{% url 'candidate_dashboard' %}" class="btn">
-                Candidate Dashboard
-            </a>
+        <a href="{% url 'candidate_dashboard' %}" class="btn btn-secondary">
+                    Dashboard
+                </a> {% elif profile.role == 'company' %}
 
-    <a href="{% url 'job_list' %}" class="btn btn-secondary">
+        <a href="{% url 'create_job' %}" class="btn">
+                    Post a Job
+                </a>
+
+        <a href="{% url 'company_dashboard' %}" class="btn btn-secondary">
+                    Dashboard
+                </a> {% endif %} {% else %}
+
+        <a href="{% url 'job_list' %}" class="btn">
                 Find Jobs
-            </a> {% elif profile.role == 'company' %}
-
-    <br>
-
-    <a href="{% url 'company_dashboard' %}" class="btn">
-                Company Dashboard
             </a>
 
-    <a href="{% url 'create_job' %}" class="btn btn-success">
-                Create Job
-            </a> {% endif %} {% else %}
+        <a href="{% url 'register' %}" class="btn btn-secondary">
+                Get Started
+            </a> {% endif %}
 
-    <br>
-
-    <a href="{% url 'job_list' %}" class="btn">
-            Find Jobs
-        </a>
-
-    <a href="{% url 'login' %}" class="btn btn-secondary">
-            Login
-        </a>
-
-    <a href="{% url 'register' %}" class="btn btn-success">
-            Register
-        </a> {% endif %}
+    </div>
 
 </section>
 
@@ -66,11 +53,11 @@
     <div class="card">
 
         <h2>
-            About SmartHire
+            How SmartHire Works
         </h2>
 
         <p>
-            SmartHire is a recruitment platform that connects candidates with companies and uses resume analysis to calculate job matching scores.
+            SmartHire connects candidates with companies and uses resume analysis and AI/NLP matching to help identify relevant job opportunities.
         </p>
 
     </div>
@@ -85,7 +72,7 @@
             </h3>
 
             <p>
-                Upload your resume, discover jobs and track your applications.
+                Upload your resume, discover jobs, apply and track your applications.
             </p>
 
         </div>
@@ -98,7 +85,7 @@
             </h3>
 
             <p>
-                Create jobs, view applicants and evaluate candidate matches.
+                Post jobs, view applicants and analyze candidate skill matches.
             </p>
 
         </div>
@@ -111,7 +98,7 @@
             </h3>
 
             <p>
-                Compare candidate resumes with job requirements using skill matching and NLP analysis.
+                Compare resume skills and job requirements using AI/NLP techniques.
             </p>
 
         </div>
